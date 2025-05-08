@@ -12,6 +12,7 @@ xspd = (_right - _left) * _move_spd;
 yspd = (_down - _up) * _move_spd;
 
 // HORIZONTAL COLLISION
+// The varible '_px' is preventing clipping into wall when in a horizontal collision
 if (place_meeting(x + xspd, y, obj_wall)) {
     var _px = sign(xspd);
     while (!place_meeting(x + _px, y, obj_wall)) {
@@ -21,6 +22,7 @@ if (place_meeting(x + xspd, y, obj_wall)) {
 }
 
 // VERTICAL COLLISION
+// The varible '_py' is preventing clipping into wall when in a vertical collision
 if (place_meeting(x, y + yspd, obj_wall)) {
     var _py = sign(yspd);
     while (!place_meeting(x, y + _py, obj_wall)) {

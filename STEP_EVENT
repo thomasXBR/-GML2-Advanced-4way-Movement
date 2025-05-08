@@ -1,0 +1,34 @@
+// INPUTS
+var _right = keyboard_check(vk_right);
+var _left = keyboard_check(vk_left);
+var _up = keyboard_check(vk_up);
+var _down = keyboard_check(vk_down);
+
+
+// HORIZONTAL MOVEMENT
+xspd = (_right - _left) * _move_spd;
+
+// VERTICAL MOVEMENT
+yspd = (_down - _up) * _move_spd;
+
+// HORIZONTAL COLLISION
+if (place_meeting(x + xspd, y, obj_wall)) {
+    var _px = sign(xspd);
+    while (!place_meeting(x + _px, y, obj_wall)) {
+        x += _px;
+    }
+    xspd = 0;
+}
+
+// VERTICAL COLLISION
+if (place_meeting(x, y + yspd, obj_wall)) {
+    var _py = sign(yspd);
+    while (!place_meeting(x, y + _py, obj_wall)) {
+        y += _py;
+    }
+    yspd = 0;
+}
+
+// APPLIES MOVEMENT
+x += xspd;
+y += yspd;
